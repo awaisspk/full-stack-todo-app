@@ -7,10 +7,13 @@ const StitchesConfig = createStitches({
       primary: '#fd76a1',
       secondary: '#181820',
       typefacePrimary: '#fef3ff',
+      typefaceSecondary: 'rgba(255,255,255,0.8)',
       bodyBg: '$secondary',
       todoBg: 'rgba(33, 33, 43,0.7)',
       linkcolor: '#fef3ff',
       outlineColor: '#ed4b82',
+      borderColor: 'rgba(52,51,67,1)',
+      error: 'hsla(8, 100%, 53%, 0.22)',
     },
 
     fonts: {
