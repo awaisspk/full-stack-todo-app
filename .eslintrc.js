@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'prefer-const': 'error',
     'require-jsdoc': 0,
+    'new-cap': 0,
   },
   settings: {
     react: {
