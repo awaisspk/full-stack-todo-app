@@ -25,12 +25,23 @@ export const globalStyles = globalCss(...normalize, {
     textDecoration: 'none',
   },
 
+  '*:focus:not(:focus-visible)': {
+    outline: 'none',
+  },
+
+  '*:focus-visible': {
+    outline: '2px solid $primary',
+    outlineOffset: '4px',
+  },
+
   img: {
     maxWidth: '100%',
   },
 
   body: {
     lineHeight: 1.5,
+    color: '$typefacePrimary',
+    fontFamily: '$primary',
     backgroundColor: '$bodyBg',
   },
 
