@@ -4,10 +4,10 @@ import React from 'react';
 
 const StyledButton = styled(motion.button, {
   border: '3px solid $borderColor',
-  color: '$typefacePrimary',
   fontFamily: '$primary',
   fontSize: '$2',
   fontWeight: '$500',
+  py: '$5',
   px: '$5',
   display: 'inline-flex',
   justifyContent: 'center',
@@ -15,20 +15,18 @@ const StyledButton = styled(motion.button, {
   borderRadius: '0.9em',
   userSelect: 'none',
   WebkitTapHighlightColor: 'transparent',
-  background: 'linear-gradient(90deg, #7f00ff 0%, #e100ff 100%)',
+  color: '$typefaceSecondary',
+  background: 'transparent',
 
   '& svg': {
     marginRight: '$3',
   },
 
   variants: {
-    signin: {
-      true: {
+    variant: {
+      signin: {
         width: '100%',
-        background: 'transparent',
-        textSizeAdjust: 'none',
         py: '$6',
-        color: '$typefaceSecondary',
       },
     },
   },
@@ -36,16 +34,20 @@ const StyledButton = styled(motion.button, {
 
 type StyledButtonProps = React.ComponentProps<typeof StyledButton>;
 type Props = StyledButtonProps & {
-  signin: boolean;
+  signin?: boolean;
 };
 
-export const Button: React.FC<Props> = ({children, signin, ...rest}) => {
+export const Button: React.FC<Props> = ({
+  children,
+  signin = false,
+  ...rest
+}) => {
   const buttonVariants: Variants = {
     idle: {
-      scale: 1,
+      border: '3px solid rgba(52,51,67,1)',
     },
     hover: {
-      scale: 1.05,
+      border: '3px solid #fd76a1',
     },
     tap: {
       scale: 0.99,
@@ -68,7 +70,7 @@ export const Button: React.FC<Props> = ({children, signin, ...rest}) => {
         initial={signin ? '' : 'idle'}
         whileHover="hover"
         whileTap={signin ? '' : 'tap'}
-        signin
+        variant={signin ? 'signin' : undefined}
         {...rest}
       >
         {children}
