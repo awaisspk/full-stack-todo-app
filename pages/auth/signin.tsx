@@ -1,5 +1,9 @@
 import {getProviders, signIn} from 'next-auth/react';
-import {GetStaticPropsContext, InferGetStaticPropsType, NextPage} from 'next';
+import {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+  NextPage,
+} from 'next';
 import {useRouter} from 'next/router';
 import {SignInError} from '@components/SigninError';
 import {Button} from '@components/Buttons';
@@ -15,9 +19,9 @@ const Wrapper = styled('section', Flex, {
   justifyContent: 'center',
 });
 
-const SigninPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  providers,
-}) => {
+const SigninPage: NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({providers}) => {
   const {error} = useRouter().query;
   const ErrorMessage = error && <SignInError error={error} />;
 
@@ -49,7 +53,7 @@ const SigninPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   );
 };
 
-export const getStaticProps = async (ctx: GetStaticPropsContext) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const providers = await getProviders();
 
   return {
