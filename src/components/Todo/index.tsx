@@ -1,6 +1,6 @@
 import {TodoLayout} from '@src/Layouts/todoLayout';
 import {v4 as uuidv4} from 'uuid';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CreateTodo} from './Createtodo';
 import {DisplayTodos} from './displayTodo';
 import {useMutation} from 'react-query';
@@ -16,6 +16,11 @@ export type Todo = {
 export const TodoList = ({todoslist}: {todoslist: Todo[]}) => {
   const [value, setValue] = useState('');
   const [todos, setTodo] = useState<Todo[] | []>(todoslist);
+  const [removeTodo, setRemoveTodo] = useState('');
+
+  useEffect(() => {
+    setTodo((todos) => todos.filter((todo) => todo.id !== removeTodo));
+  }, [removeTodo]);
 
   const mutation = useMutation((newTodo: Todo) => {
     return axios.post('/api/todos', newTodo);
@@ -28,6 +33,7 @@ export const TodoList = ({todoslist}: {todoslist: Todo[]}) => {
     }
     const newTodo = {id: uuidv4(), content: value, completed: false};
     setTodo([...todos, newTodo]);
+    console.log(newTodo);
     mutation.mutate(newTodo);
     setValue('');
   };
@@ -39,7 +45,7 @@ export const TodoList = ({todoslist}: {todoslist: Todo[]}) => {
         setValue={setValue}
         handleSubmit={handleSubmit}
       />
-      <DisplayTodos todos={todos} />
+      <DisplayTodos todos={todos} removeTodo={setRemoveTodo} />
     </TodoLayout>
   );
 };
