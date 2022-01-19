@@ -12,7 +12,6 @@ import {getSession} from 'next-auth/react';
 const Home: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({todos}) => {
-  console.log(todos);
   return (
     <HomePageLayout>
       <Header />
