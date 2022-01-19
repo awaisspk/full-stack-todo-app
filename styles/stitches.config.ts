@@ -5,16 +5,17 @@ const StitchesConfig = createStitches({
   theme: {
     colors: {
       primary: '#fd76a1',
+      primary2: '#ed4b82',
       secondary: '#181820',
       accent: 'rgba(33, 33, 43,0.7)',
       typefacePrimary: '#fef3ff',
       typefaceSecondary: 'rgba(255,255,255,0.8)',
-      bodyBg: '$secondary',
-      todoBg: '$accent',
       linkcolor: '#fef3ff',
-      outlineColor: '#ed4b82',
       borderColor: 'rgba(52,51,67,1)',
       error: 'hsla(8, 100%, 53%, 0.22)',
+      outlineColor: '$primary',
+      bodyBg: '$secondary',
+      todoBg: '$accent',
     },
 
     fonts: {
