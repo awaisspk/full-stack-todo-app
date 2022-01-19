@@ -1,3 +1,4 @@
+import {DeleteTodo} from '@components/DeleteTodo';
 import {Flex} from '@components/Flex';
 import {styled} from '@stitches';
 import {motion} from 'framer-motion';
@@ -19,31 +20,13 @@ const Text = styled(motion.span, {
   fontSize: '$3',
 });
 
-const IconButton = styled('button', {
-  border: 'none',
-  backgroundColor: 'transparent',
-  transition: '300ms',
-  borderRadius: '5px',
-  opacity: '0',
-
-  '&:focus': {
-    opacity: 1,
-  },
-  '&:active svg': {
-    stroke: '$primary',
-  },
-  '@bp2': {
-    marginRight: '10px',
-  },
-});
-
 const Container = styled(motion.li, Flex, {
   width: '100%',
   minHeight: '70px',
   px: '$8',
   borderRadius: '20px',
   backgroundColor: 'rgba(33, 33, 43,0.7)',
-  [`&:hover ${IconButton}`]: {
+  [`&:hover .iconButton}`]: {
     opacity: 1,
   },
 });
@@ -52,9 +35,10 @@ type Props = {
   children: React.ReactNode;
   id: string;
   status: boolean;
+  deleteTodo: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const Todo = ({id, children, status}: Props) => {
+export const Todo = ({id, children, status, deleteTodo}: Props) => {
   const [checked, setChecked] = useState(status);
 
   return (
@@ -75,6 +59,7 @@ export const Todo = ({id, children, status}: Props) => {
           </Text>
         </Label>
       </Flex>
+      <DeleteTodo deleteTodo={deleteTodo} id={id} />
     </Container>
   );
 };
